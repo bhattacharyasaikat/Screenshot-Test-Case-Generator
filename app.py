@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 # Allow all origins
 CORS(app)
-API_KEY = "AIzaSyA3VQpjBu6AI92KTsvoHomRdWBdMqalCPI"
+API_KEY = "API_KEY"
 
 genai.configure(api_key=API_KEY)
 
