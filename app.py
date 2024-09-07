@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 # Allow all origins
 CORS(app)
-API_KEY = "API-KEY"
+API_KEY = "AIzaSyA3VQpjBu6AI92KTsvoHomRdWBdMqalCPI"
 
 genai.configure(api_key=API_KEY)
 
@@ -28,8 +28,9 @@ def call_gemini_api(images, context=""):
             uploaded_image = genai.upload_file(path=img_path, display_name=img.filename)
             uploaded_images.append(uploaded_image.uri)
         prompt = f"""
-        Generate a detailed, step-by-step guide for testing the functionalities of the digital product shown in the provided screenshots. Each test case should follow this structured format:
-
+        Generate a detailed, step-by-step guide for testing the functionalities of the website shown in the provided screenshots.
+         Analyze the visible elements (such as buttons, input fields, Links) and generate detailed step-by-step test cases for testing the functionalities of the website
+         Each test case should follow this structured format. Generate detailed, step-by-step test cases for each visible functionality :
         1. **Test Case ID**: Assign a unique identifier to the test case for future reference.
 
         2. **Test Case Description**: Describe what the test case is designed to do, including a brief overview of the expected behavior.
@@ -45,7 +46,8 @@ def call_gemini_api(images, context=""):
         **Screenshots**: {", ".join(uploaded_images)}
 
         **Context (if available)**: {context if context else "No additional context provided."}
-
+        
+        generate test cases from all the images provided. 
         Please ensure that the test cases cover all visible functionalities and features in the screenshots, even if no additional context is provided. Follow the above structure to generate detailed and organized test cases.
         """
         content = {
